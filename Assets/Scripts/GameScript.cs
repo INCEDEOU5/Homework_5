@@ -32,7 +32,8 @@ public class GameScript : MonoBehaviour
     //Preset the texts 
     private void Start()
     {
-        //Present the Text to values of 0
+        score.text = "Score: " + scoreCounter;
+        lives.text = "Lives: " + livesCounter;
     }
 
     // Update is called once per frame
@@ -67,7 +68,7 @@ public class GameScript : MonoBehaviour
     public void SpikeUpdate()
     {
         livesCounter--;
-        //Update the text 
+        lives.text = "Lives: " + livesCounter;
         if (livesCounter == 0)
         {
             BackToMainMenu();
@@ -78,18 +79,19 @@ public class GameScript : MonoBehaviour
     public void GoalUpdate()
     {
         scoreCounter++;
+        score.text = "Score: " + scoreCounter;
         //Update the Text 
     }
 
     //Creates a new ball
     public void SpawnBall()
     {
-        //Create Ball
+        var spawn = Instantiate(ball, spawnPoint.position, Quaternion.identity);
     }
 
     //Sends the game back to the main menu scene 
     private void BackToMainMenu()
     {
-        //Send back to the main menu
+        SceneManager.LoadScene("MenuScene");
     }
 }
